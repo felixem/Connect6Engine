@@ -90,25 +90,22 @@ def msg2move(msg):
         return move
 
 def print_board(board, preMove=None):
-    print("  " + "".join([chr(i + ord('A') - 1) for i in range(1, Defines.GRID_NUM - 1)]))
+    print("   " + "".join([chr(i + ord('A') - 1)+" " for i in range(1, Defines.GRID_NUM - 1)]))
     for i in range(1, Defines.GRID_NUM - 1):
-        print(f"{chr(ord('T') - i)}", end="")
+        print(f"{chr(ord('A') - 1 + i)}", end=" ")
         for j in range(1, Defines.GRID_NUM - 1):
-            x = i
-            y = j
-            if preMove and ((x == preMove.positions[0].x and y == preMove.positions[0].y) or
-                            (x == preMove.positions[1].x and y == preMove.positions[1].y)):
-                print(" X", end="")
-                continue
+            x = Defines.GRID_NUM - 1 - j
+            y = i
             stone = board[x][y]
             if stone == Defines.NOSTONE:
                 print(" -", end="")
-            elif stone == 'O':
+            elif stone == Defines.BLACK:
                 print(" O", end="")
-            elif stone == '*':
+            elif stone == Defines.WHITE:
                 print(" *", end="")
-        print(f"{chr(ord('T') - i)}")
-    print("  " + "".join([chr(i + ord('A') - 1) for i in range(1, Defines.GRID_NUM - 1)]))
+        print(" ", end="")        
+        print(f"{chr(ord('A') - 1 + i)}", end="\n")
+    print("   " + "".join([chr(i + ord('A') - 1)+" " for i in range(1, Defines.GRID_NUM - 1)]))
 
 def print_score(move_list, n):
     board = [[0] * Defines.GRID_NUM for _ in range(Defines.GRID_NUM)]
