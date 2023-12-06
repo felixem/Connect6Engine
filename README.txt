@@ -4,7 +4,7 @@ Compile Notes
 -------------
 
 To generate a compatible executable with the game interface, execute:
-    python -m PyInstaller main.py
+    pyinstaller --onefile main.py
     
 The executable will be generated in dist/main/main
 
